@@ -1,0 +1,112 @@
+
+  .product-section table{
+    padding: 10px;
+    border: none;
+  }
+  .product-section h3, .product-section tr{
+    border-bottom: none
+  }
+  .product-section h3, .product-section h5{
+    color: #0e243f;
+  }
+  .dimension-fields {
+    display: flex;
+    border: 1px solid #b0c0d6;
+  }
+  .dimension-fields .dimension-input {
+    flex-basis: 33%;
+  }
+  .dimension-input .form-control{
+    border: 0;
+  }
+  .dimension-fields .dimension-seperator {
+    padding: 8px 7px;
+    color: rgb(137, 137, 137);
+    background-color: rgba(239, 242, 245, 0.836);
+    font-size: 12px;
+  }
+  .close-button{
+    position: absolute;
+    right: 100px;
+    top: 50px;
+    display: block;
+  }
+  .close-button button{
+    border-radius: 25%;
+  }
+  #progressbar {
+    margin-bottom: 3vh;
+    overflow: hidden;
+    color: white;
+    padding-left: 0px;
+    margin-top: 3vh
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: 0.8rem;
+    width: 25%;
+    float: left;
+    position: relative;
+    font-weight: 400;
+    color: white
+}
+
+#progressbar #step1:before {
+    content: "";
+    color: white;
+    width: 20px;
+    height: 20px;
+    margin-left: 0px !important
+}
+
+#progressbar #step2:before {
+    content: "";
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    margin-left: 32%
+}
+
+#progressbar #step3:before {
+    content: "";
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    margin-right: 32%
+}
+
+#progressbar #step4:before {
+    content: "";
+    color: rgb(151, 149, 149, 0.651);
+    width: 20px;
+    height: 20px;
+    margin-right: 0px !important
+}
+
+#progressbar li:before {
+    line-height: 29px;
+    display: block;
+    font-size: 12px;
+    background: rgb(151, 149, 149);
+    border-radius: 50%;
+    margin: auto;
+    z-index: -1;
+    margin-bottom: 1vh
+}
+
+#progressbar li:after {
+    content: '';
+    height: 3px;
+    background: rgb(151, 149, 149, 0.651);
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    margin-bottom: 2vh;
+    top: 8px;
+    z-index: 1
+}
+
+.progress-track {
+    padding: 0 8%
+}

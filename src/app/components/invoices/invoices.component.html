@@ -1,0 +1,227 @@
+<div class="container" style="justify-items: right;">
+    <div class="row">
+        <div class="col-lg-12 col-sm-12">
+            <div class="header-container">
+                <h3>Welcome, {{userName}}!</h3>
+              
+              <a class="btn logout-btn" type="submit" name="logout" routerLink="/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        
+        <div class="col-lg-12 col-sm-12">
+            <div class="product-section" [hidden]="hidden">
+                <h3 class="mt-3 mb-3">Add Invoice Details</h3>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="form-label" for="productName">Client</label>
+                        <select class="form-select" aria-label="Default select example" name="warehouse"  [(ngModel)]="invoice.storeName">
+                            
+                            <option [value]="client.storeName" *ngFor="let client of clientList">{{client.storeName}}</option>
+                           
+                        </select> 
+                    </div>
+                    
+                    
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="form-label" for="invoiceNo">Invoice#</label>
+                        <input class="form-control" type="text" [(ngModel)]="invoice.invoiceNo" name="invoiceNo"
+                                    id="invoiceNo" value="Inv-" />
+                    </div>
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-3">
+                        <label class="form-label" for="orderNumber">Order Number</label>
+                        <input class="form-control" type="text" [(ngModel)]="invoice.orderNumber" name="orderNumber"
+                                    id="orderNumber" placeholder="Enter Order Number" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="form-label" for="productName">Invoice Date</label><br>
+                        <mat-form-field >
+                            
+                        <input matInput [matDatepicker]="picker" [(ngModel)]="invoice.invoiceDate">
+<mat-hint>MM/DD/YYYY</mat-hint>
+<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+<mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+                        </div>
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-3">
+                            <label class="form-label" for="productName">Due Date</label><br>
+                            <mat-form-field >
+                                
+                            <input matInput [matDatepicker]="picker1" [(ngModel)]="invoice.dueDate">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+                            </div>
+                    </div>
+                   
+                    <h3 class="mt-3 mb-3">Item Details</h3>
+                    <table>
+                        <tr>
+                            <td>Item Name</td>
+                            <td>Quantity</td>
+                            <td>Amount</td>
+                            <td>Shipping Charges</td>
+                            <td>Total (Rs.)</td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-control" type="text" [(ngModel)]="invoice.itemName" name="itemName"
+                                id="itemName" placeholder="Enter Item Name" /></td>
+                            <td><input class="form-control" type="number" [(ngModel)]="invoice.quantity" name="quantity"
+                                id="quantity" placeholder="0" /></td>
+                            <td><input class="form-control" type="number" [(ngModel)]="invoice.amount" name="amount"
+                                id="amount" (ngModelChange)="amountchange($event)" /></td>
+                            <td><input class="form-control" type="number" [(ngModel)]="invoice.shippingCharges" name="shippingCharges"
+                                id="shippingCharges" (ngModelChange)="extraChargeschange($event)" /></td>
+                            <td>{{invoice.total}}
+                                <input class="form-control" type="number" [(ngModel)]="invoice.total" name="total"
+                                id="total" /></td>
+                        </tr>
+                    </table>
+                       
+                    <div class="form-group text-center">
+                        <button class="btn eh-button" type="reset" name="reset">Reset</button>
+                        <input class="btn eh-button" type="submit" name="submit_reg" value="Review" (click)="addInvoice()">
+                        
+                    </div>
+                    <div class="modal" tabindex="-1"  role="dialog" [ngStyle]="{'display':displayStyle}">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                
+                                <div class="modal-body invoice" id="invoice">
+                                    <h2>INVOICE</h2>
+                                    <hr>
+                                    <div class="row" >
+                                        <div class="col-md-6" style="align-items: left;">
+                                            <h6>INVOICE TO: </h6>
+                                            <h4>{{invoice.clientId}}</h4>
+                                            <p>Date : {{invoice.invoiceDate | date:'shortDate'}}</p>
+                                        </div>
+                                        <div class="col-md-6" style="text-align: right;">
+                                            <h6>TOTAL DUE </h6>
+                                            <h4>INR : Rs {{invoice.total}}</h4>
+                                            <p>No : {{invoice.invoiceNo}}</p>
+                                            <p>Due Date : {{invoice.dueDate | date:'shortDate'}}</p>
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                    <table >
+                                        <thead>
+                                            <td style="width: 40%;">Item Name</td>
+                                            <td style="width: 20%;">Qty</td>
+                                            <td style="width: 20%;">Price</td>
+                                            <td style="width: 20%;">Shipping</td>
+                                        </thead>
+                                        <tr>
+                                            <td>{{invoice.itemName}}</td>
+                                            <td>{{invoice.quantity}}</td>
+                                            <td>{{invoice.amount}}</td>
+                                            <td>{{invoice.shippingCharges}}</td>
+                                        </tr>
+                                       <!--  <tr style="border: none;" >
+                                            <td colspan="2" style="border: none;"></td>
+                                            <td colspan="2" >
+                                                <tr style="border: none; text-align: right;">Sub-total : </tr>
+                                                <tr style="border: none; text-align: right;">Tax :</tr>  
+                                                 
+                                            </td>
+                                        </tr> -->
+                                        <tr style="border: none;">
+                                            <td colspan="2" style="border: none;"></td>
+                                            <td style="text-align: end;border: none; border-left: 3px solid rgba(0, 0, 0, 0.25);">
+                                                Sub-total :
+                                            </td>
+                                            <td style="border: none;border-right: 3px solid rgba(0, 0, 0, 0.25);">{{invoice.amount+invoice.shippingCharges}}</td>
+                                        </tr><tr style="border: none;">
+                                            <td colspan="2" style="border: none;"></td>
+                                            <td style="text-align: end;border: none;border-left: 3px solid rgba(0, 0, 0, 0.25);">
+                                                Tax :
+                                            </td>
+                                            <td style="border: none;border-right: 3px solid rgba(0, 0, 0, 0.25);">{{(invoice.amount+invoice.shippingCharges)*0.18}}</td>
+                                        </tr>
+                                        <tr style="border: none;">
+                                            <td colspan="2" style="border: none;"></td>
+                                            <td  style="text-align: end; font-weight: 700; font-size: 20px; border-right: none;">
+                                                 Total : 
+                                            </td>
+                                            <td style="border-left: none;">{{invoice.total}}</td>
+                                        </tr>
+                                    </table>
+                                    <h4 style="margin-top: 100px;">Thank you for purchase!</h4>
+                                </div>
+                                <div class="modal-footer">
+                                   <!--  <button type="button" class="btn btn-danger" (click)="closePopup()">Close</button> -->
+                                    <button type="button" class="btn btn-primary" (click)="printInvoice()">Print</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="product-section">
+                <h3 class="mt-3 mb-3">Invoice Details
+                    <button class="logout-btn" type="button" style="margin-right: 180px;" (click)="viewForm();">New</button>
+                    <div class="wrap">
+                        <div class="search">
+                           <input type="text" class="form-control searchTerm"  placeholder="Search" [(ngModel)]="searchId">
+                           <button type="button" class="searchButton" (click)="search();">
+                             <mat-icon>search</mat-icon>
+                          </button>
+                        </div>
+                     </div>
+                    
+                </h3>
+                <table style="width: 100%;" *ngIf="stringObject !== null">
+                    <tr>
+                      <th>Date</th>
+                      <th>Invoice</th>
+                      <th>Order Number</th>
+                      <th>Client Name</th>
+                      <th>Due Date</th>
+                      <th>Amount</th>
+                      
+                    </tr>
+                    
+                    <tr *ngFor="let invoice1 of stringObject" >
+                        <td>{{invoice1.invoiceDate | date: 'shortDate'}}</td>
+                        <td>{{invoice1.invoiceNo}}</td>
+                        <td>{{invoice1.orderNumber}}</td>
+                        <td>{{invoice1.storeName}}</td>
+                        <td>{{invoice1.dueDate | date: 'shortDate'}}</td>
+                        <td>{{invoice1.total}}</td>
+                    </tr>
+                </table>
+                <table style="width: 100%;" *ngIf="stringObject === null">
+                <tr>
+                    <th>No. </th>
+                    <th>Date</th>
+                    <th>Invoice</th>
+                    <th>Order Number</th>
+                    <th>Client Name</th>
+                    <th>Due Date</th>
+                    <th>Amount</th>
+                    
+                  </tr>
+                    <tr *ngFor="let invoice of invoiceList, let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{invoice.invoiceDate | date: 'shortDate'}}</td>
+                    <td>{{invoice.invoiceNo}}</td>
+                    <td>{{invoice.orderNumber}}</td>
+                    <td>{{invoice.storeName}}</td>
+                    <td>{{invoice.dueDate | date: 'shortDate'}}</td>
+                    <td>{{invoice.total}}</td>
+                </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

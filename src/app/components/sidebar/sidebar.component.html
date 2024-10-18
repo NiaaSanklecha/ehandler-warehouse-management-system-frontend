@@ -1,0 +1,67 @@
+<mat-nav-list>
+     
+    <img class="avatar" src="assets/images/logo.png" />
+    <mat-divider></mat-divider>
+    
+    
+    <a mat-list-item *ngIf="loginService.isUserLoggedIn()"  routerLink="/dashboard" routerLinkActive="list-item-active" >
+        <mat-icon>dashboard</mat-icon>
+        <span class="mat-list-text">Dashboard</span>
+    </a>
+    <a mat-list-item routerLink="/inbound" routerLinkActive="list-item-active" *ngIf= "role === 'Employee' || role ===  'Admin'">
+        <mat-icon>receipt</mat-icon>
+        <span class="mat-list-text">Generate Barcode</span>
+    </a>
+    <a mat-list-item routerLink="/scanbarcode" routerLinkActive="list-item-active" *ngIf= "role === 'Employee' || role ===  'Admin' || role ==='Client'">
+        <mat-icon>add_box</mat-icon>
+        <span class="mat-list-text">Inventory</span>
+    </a>
+   
+    <a mat-list-item routerLink="/orders" routerLinkActive="list-item-active" *ngIf= "role === 'Employee' || role ===  'Admin'">
+        <mat-icon> local_grocery_store</mat-icon>
+        <span class="mat-list-text">Fulfillment</span>
+    </a>
+   
+    <mat-list style="padding-top: 0px;">
+        <mat-list-item style="margin-bottom: 0px;">
+            
+          <a (click)="showSubmenu = !showSubmenu" style="display: flex;" *ngIf= "role === 'Employee' || role ===  'Admin'">
+            <mat-icon style="margin-top: 6px;"> horizontal_split</mat-icon>
+            <span class="mat-list-text">Sales</span>
+            <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" style="margin-left: 45px;">arrow_drop_down</mat-icon>
+          </a>
+        </mat-list-item>
+        <div class="submenu" [ngClass]="{'expanded' : showSubmenu}">
+            <a mat-list-item routerLink="/packages" routerLinkActive="list-item-active" >
+                <mat-icon> local_mall</mat-icon>
+                <span class="mat-list-text">Packages</span>
+            </a>
+            <a mat-list-item routerLink="/clientele" routerLinkActive="list-item-active" >
+                <mat-icon>people</mat-icon>
+                <span class="mat-list-text">Clientele</span>
+            </a>
+            <a mat-list-item routerLink="/invoices" routerLinkActive="list-item-active" >
+                <mat-icon>description</mat-icon>
+                <span class="mat-list-text">Invoices</span>
+            </a>
+            <a mat-list-item routerLink="/delivery-challan" routerLinkActive="list-item-active" >
+                <mat-icon> local_shipping</mat-icon>
+                <span class="mat-list-text">Delivery Challans</span>
+            </a>
+            <a mat-list-item routerLink="/shipmets" routerLinkActive="list-item-active" >
+                <mat-icon>assignment_turned_in</mat-icon>
+                <span class="mat-list-text">Shipments</span>
+            </a>
+           
+        </div>
+      </mat-list>
+    <a mat-list-item routerLink="/addUser" routerLinkActive="list-item-active" *ngIf= "role === 'Admin'">
+        <mat-icon>person</mat-icon>
+        <span class="mat-list-text">Add User</span>
+    </a>
+    <a mat-list-item routerLink="/warehouse" routerLinkActive="list-item-active" *ngIf= "role === 'Admin'">
+        <mat-icon>account_balance</mat-icon>
+        <span class="mat-list-text">Warehouses</span>
+    </a>
+    
+</mat-nav-list>

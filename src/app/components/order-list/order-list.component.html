@@ -1,0 +1,265 @@
+<div class="container" style="justify-items: right;">
+    <div class="row">
+        <div class="col-lg-12 col-sm-12">
+            <div class="header-container text-center" >
+                <h3 >Welcome, {{userName}} !</h3>
+                
+                <a class="btn logout-btn" type="submit" name="logout" routerLink="/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="product-section" style="min-height: 600px;">
+       <!--  <div class="row" *ngFor="let client of clientObject" style="margin: 20px;">
+            <div class="col-lg-4">
+               <h5 style="font-weight: 500;">Client Name: {{client.clientName}}</h5> 
+            </div>
+            <div class="col-lg-6">
+                <h5 style="font-weight: 500;"> Store Name: {{client.storeName}}</h5> 
+            </div>
+
+        </div> -->
+        <div class="event-schedule-area-two bg-color pad100">
+            <div class="container">
+                <div class="row" *ngFor="let client of clientObject">
+                    <div class="col-lg-12">
+                        <div class="section-title text-center">
+                            <div class="title-text">
+                                <h5 style="font-weight: 500;"> Store Name: {{client.storeName}}</h5> 
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <!-- /.col end-->
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ul class="nav custom-tab" id="myTab" role="tablist" *ngFor="let client of clientObject">
+                            <li class="nav-item" *ngIf="client.app === 'Shopify'" (click)="showOrders(client.id)">
+                                <a class="nav-link"  data-toggle="tab"  role="tab"  aria-selected="false">Shopify</a>
+                            </li>
+                            <li class="nav-item" *ngIf="client.app === 'Amazon'">
+                                <a class="nav-link"  data-toggle="tab" role="tab"  aria-selected="false">Amazon</a>
+                            </li>
+                            <li class="nav-item" *ngIf="client.app === 'Flipkart'" (click)="showOrders(client.id)">
+                                <a class="nav-link" data-toggle="tab" role="tab"  aria-selected="false">Flipkart</a>
+                            </li>
+                            <li class="nav-item" *ngIf="client.app === 'Myntra'">
+                                <a class="nav-link" data-toggle="tab" role="tab"  aria-selected="false">Myntra</a>
+                            </li>
+                            <li class="nav-item" *ngIf="client.app === 'Woocommerce'" (click)="showOrders(client.id)">
+                                <a class="nav-link" data-toggle="tab" role="tab"  aria-selected="false">Woocommerce</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content " id="myTabContent" >
+                            <div class="tab-pane fade active show" id="home" role="tabpanel">
+                                <div class="table-responsive " *ngIf="hideOrderList">
+                                    <table class="table" *ngIf="orderObject" >
+                                        <thead>
+                                            <tr >
+                                                <th class="text-center" scope="col">Order No.</th>
+                                                <th class="text-center" scope="col">Date</th>
+                                                <th  class="text-center" scope="col">Customer</th>
+                                                <th class="text-center" scope="col">Fulfillment Status</th>
+                                                <th class="text-center" scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="inner-box" *ngFor="let order of orderObject?.orders" >
+                                                <td >
+                                                    <div class="event-date">
+                                                        <span>#{{order.order_number}}</span>
+                                                        
+                                                    </div>
+                                                </td>
+                                                
+                                                <td>
+                                                    <div class="event-wrap">
+                                                        <h3 style="border-bottom: none;">{{order.created_at | date:'longDate'}}</h3>
+                                                        
+                                                    </div>
+                                                </td>
+                                                <td >
+                                                    <div class="event-wrap">
+                                                        <h3 style="border-bottom: none;">{{order.customer.first_name}} {{order.customer.last_name}}</h3>
+                                                    </div>
+                                                </td>
+                                              
+                                                <td >
+                                                    <div class="event-wrap">
+                                                        <h3 style="border-bottom: none;">{{order.fulfillment_status}}</h3>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="primary-btn">
+                                                        <button class="eh-button" (click)="showOrderInDetail(order.id)">Select</button>
+                                                    </div>
+                                                </td>
+                                                
+                                            </tr>
+                                            <tr class="inner-box" *ngFor="let order of orderObject" >
+                                                <td >
+                                                    <div class="event-date">
+                                                        <span>#{{order.number}}</span>
+                                                        
+                                                    </div>
+                                                </td>
+                                                
+                                                <td>
+                                                    <div class="event-wrap">
+                                                        <h3 style="border-bottom: none;">{{order.date_created | date:'longDate'}}</h3>
+                                                        
+                                                    </div>
+                                                </td>
+                                                <td >
+                                                    <div class="event-wrap">
+                                                        <h3 style="border-bottom: none;">{{order.billing.first_name}} {{order.billing.last_name}}</h3>
+                                                    </div>
+                                                </td>
+                                              
+                                                <td >
+                                                    <div class="event-wrap">
+                                                        <h3 style="border-bottom: none;">{{order.status}}</h3>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="primary-btn">
+                                                        <button class="eh-button" (click)="showOrderInDetail(order.id)">Select</button>
+                                                    </div>
+                                                </td>
+                                                
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                    
+                                </div>
+                                <div class="table-responsive " *ngIf="showOrderDetails">
+                                    <table class="table" *ngIf="orderDetalsObject" >
+                                        <thead>
+                                            
+                                            <tr >
+                                                <th (click)="goBack()" style="cursor: pointer; width: 5px;"><mat-icon>keyboard_arrow_left</mat-icon> </th>
+                                                <th class="text-center" scope="col">Product Name</th>
+                                                <th class="text-center" scope="col">Quantity</th>
+                                                <th class="text-center" scope="col">Fulfillment Status</th>
+                                                <th class="text-center" scope="col">Customer</th>
+                                                <th class="text-center" scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let order1 of orderDetalsObject" > 
+                                            <tr class="inner-box" *ngFor="let detail of order1?.order?.line_items" 
+                                            [ngStyle]="{'background-color': detail.fulfillment_status === 'fulfilled' ? '#dee2e6' : '#ffffff' }"> 
+                                                <td></td>
+                                                <td >
+                                                    <div class="event-wrap">
+                                                        <h3 style="border-bottom: none;">{{detail.name}}</h3>
+                                                        <input type="text" [(ngModel)]="detail.product_id" id="productId" hidden>
+                                                    </div>
+                                                </td>
+                                                <td >
+                                                    <div class="event-wrap">
+                                                        <h3 style="border-bottom: none;">{{detail.quantity}}</h3>
+                                                        
+                                                        <input type="text"  [(ngModel)]="detail.fulfillable_quantity" id="quantity" >
+                                                    </div>
+                                                </td>
+                                                <td >
+                                                    <div class="event-wrap">
+                                                        <h3 style="border-bottom: none;" *ngIf="detail.fulfillment_status === 'fulfilled' ">Fulfilled</h3>
+                                                        <h3 style="border-bottom: none;" *ngIf="detail.fulfillment_status === null ">Unfulfilled</h3>
+                                                        <h3 style="border-bottom: none;" *ngIf="detail.fulfillment_status === 'partial' ">Partially Fulfilled</h3>
+                                                    </div>
+                                                </td>
+                                                <td >
+                                                    <div class="event-wrap">
+                                                        <h3 style="border-bottom: none;">{{order1.order.customer.first_name}} {{order1.order.customer.last_name}}</h3>
+                                                        <input type="text"  [(ngModel)]="detail.id" id="lineItemId" hidden>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="primary-btn">
+                                                        <button class="eh-button" (click)="loadPickUp(order1.order.id,detail.product_id,detail.fulfillable_quantity,detail.id)"
+                                                            [disabled]="detail.fulfillment_status === 'fulfilled'">Pick</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="inner-box" *ngFor="let detail of order1?.line_items" >
+                                                <td></td>
+                                                <td >
+                                                    <div class="event-wrap">
+                                                        <h3 style="border-bottom: none;">{{detail.name}}</h3>
+                                                        <input type="text" [(ngModel)]="detail.product_id" id="productId" hidden>
+                                                    </div>
+                                                </td>
+                                                <td >
+                                                    <div class="event-wrap">
+                                                        <h3 style="border-bottom: none;">{{detail.quantity}}</h3>
+                                                        
+                                                        <input type="text"  [(ngModel)]="detail.quantity" id="quantity" >
+                                                    </div>
+                                                </td>
+                                                <td >
+                                                    <div class="event-wrap">
+                                                        <h3 style="border-bottom: none;" *ngIf="order1.status === 'completed' ">Fulfilled</h3>
+                                                        <h3 style="border-bottom: none;" *ngIf="order1.status === 'pending' ">Unfulfilled</h3>
+                                                        <h3 style="border-bottom: none;" *ngIf="order1.status === 'processing' ">Partially Fulfilled</h3>
+                                                    </div>
+                                                </td>
+                                                <td >
+                                                    <div class="event-wrap">
+                                                        <h3 style="border-bottom: none;">{{order1.billing.first_name}} {{order1.billing.last_name}}</h3>
+                                                        <input type="text"  [(ngModel)]="detail.id" id="lineItemId" hidden>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="primary-btn">
+                                                        <button class="eh-button" (click)="loadPickUp(order1.id,detail.product_id,detail.quantity,detail.id)"
+                                                            [disabled]="detail.status === 'completed'">Pick</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        
+                                    </table>
+                                </div>
+
+
+                                <div class="table-responsive text-center" *ngIf="isVisible === true">
+                                    <table class="table">
+                                        <thead>
+                                            <tr style="text-align: left;">
+                                                <th (click)="showOrderList()" style="cursor: pointer;">
+                                                    <mat-icon>keyboard_arrow_left</mat-icon>Back </th>
+                                            </tr>
+                                        </thead>
+                                    
+                                    <app-orderpickup [orderId]="orderId" [productId]="productId" [clientId]="clientId" 
+                                    [orderQuantity]="orderQuantity" [lineItemId]="lineItemId" (onDatePicked)="hideDiv($event)"></app-orderpickup>
+                                     </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+       
+               <!--  <table>
+                    <div *ngIf="!orderObject" class="no-data-div text-center">
+                        <h5>No Data.</h5>
+                    </div>
+                </table> -->
+                
+           
+            <!-- <tr>
+                                                    
+                                                </tr>
+        </div> -->
+       
+    </div>
+  </div>

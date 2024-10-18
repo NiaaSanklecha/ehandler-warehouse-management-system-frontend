@@ -1,0 +1,28 @@
+.square {
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+  }
+  .color{
+    background-color: #0e243f;
+  }
+  .storage-details{
+    position: relative;
+    width: 150px;
+    height: 80px;
+    left: 30px;
+    top: 20px;
+    border-radius: 5px;
+    background-color: #0e243f;
+
+  }
+  tr{
+    border-bottom: none;
+    font-family: "Barlow";
+    color: #ffffff;
+  }
+  td{
+    border-bottom: none;
+    font-family: "Barlow";
+    color: #ffffff;
+  }

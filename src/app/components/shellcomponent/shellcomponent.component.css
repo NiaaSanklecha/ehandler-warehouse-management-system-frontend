@@ -1,0 +1,43 @@
+:host{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+mat-drawer{
+    width: 210px;
+    border-radius: 15px;
+    border-right: 2px solid rgba(239, 242, 245);
+    border-left: 5px solid #0e243f;
+    background: #0e243f;
+    display: block;
+    overflow: hidden;
+}
+
+mat-drawer-container{
+    height: 100%;
+    background-color: rgba(239, 242, 245, 0.836);
+}
+
+.toggle-button{
+    display: none;
+}
+
+@media(max-width:991px){
+    
+    .toggle-button{
+        display: block;
+    position: absolute;
+    background-color: #ffffff;
+    border: none;
+    top:18px;
+    left: 22px;
+    z-index: 100;
+    }
+    .toggle-button .mat-icon{
+        width: 30px;
+        height: 30px;
+        font-size: 35px;
+        color: #0e243f;
+    }
+   
+}

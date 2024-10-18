@@ -1,0 +1,83 @@
+.package-wrapper {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    width: 500px;
+    margin-left: 30px;
+    border: none;
+}
+.package-wrapper .header {
+    position: relative;
+    border: 1px solid #f7f7f7;
+    padding: 18px 10px 15px 28px;
+}
+.package-wrapper .not-shipped-header {
+    background-color: #0e243f;
+}
+.package-wrapper .outward-arrow::before {
+    right: -41px;
+    border: 29px solid transparent;
+        border-left-color: transparent;
+        border-left-style: solid;
+        border-left-width: 29px;
+    border-left: 11px solid #0e243f;
+}
+.package-wrapper .header::after, .package-wrapper .header::before {
+    position: absolute;
+    top: -1px;
+    content: "";
+}
+.package-wrapper .package-table-content {
+    position: absolute; 
+    height: auto !important;
+    width: 100%;
+    overflow-y: auto !important;
+    padding: 0 12px 12px;
+    background-color: rgba(239, 242, 245, 0.836);
+}
+.package-wrapper .package-table-content .empty-list {
+    margin-top: 12px;
+    border: 1px solid #f2f2f2;
+    padding: 0px 0;
+    background-color: #fff;
+}
+.packaging .row{
+    margin: 5px 0px;
+}
+.packaging h5{
+    font-family: "Barlow";
+    font-weight: 500;
+    font-size: 15px;
+}
+.packaging span{
+    font-family: "Barlow";
+    font-weight: 500;
+    font-size: 15px;
+    background-color: #0e243f;
+    border-radius: 10px;
+    padding: 10px;
+    color: #fff;
+}
+.packaging h3{
+    font-family: "Barlow";
+    font-weight: 500;
+    font-size: 15px;
+    text-transform:uppercase;
+}
+.packaging p{
+    font-family: "Barlow";
+    font-weight: 500;
+    font-size: 13px;
+}
+.packaging .col-6,.packaging .col-4,.packaging .col-5{
+    text-align: right;
+}
+.close-button{
+    position: absolute;
+    right: 100px;
+    top: 50px;
+    display: block;
+  }
+  .close-button button{
+    border-radius: 25%;
+  }

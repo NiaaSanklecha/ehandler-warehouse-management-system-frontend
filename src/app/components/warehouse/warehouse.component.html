@@ -1,0 +1,86 @@
+<div class="container" style="justify-items: right;">
+    <div class="row">
+        <div class="col-lg-12 col-sm-12">
+            <div class="header-container">
+                <h3>Welcome, {{user}}!</h3>
+              
+              <a class="btn logout-btn" type="submit" name="logout" routerLink="/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9 col-sm-9">
+            <div class="product-section">
+                <h3 class="mt-3 mb-3">DarkStores </h3> 
+                <div class="text-center" style="min-height: 300px;">
+                    <table >
+                        <tr *ngIf="locationDetail" style="border-bottom: none;">
+                            <td *ngFor="let detail of locationDetail" style="padding: 10px; border-bottom: none;">
+                                <app-square-box [locationId]="detail.id" [warehouseId]="warehouseId"></app-square-box>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <h3 class="mt-3 mb-3">List of Sections </h3> 
+                <div>
+                    <table >
+                        <tr *ngFor="let list of locationList, let i=index" (click)="searchDetails(list)" style="cursor: pointer;">
+                            <td>Section 00{{i+1}}</td>
+                            <td >{{list}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-3">
+            <div class="product-section">
+                <h3 class="mt-3 mb-3">Add Warehouse 
+
+                </h3>
+            <form name="addProductDetails">
+                <fieldset>
+                    <div class="row">
+                        
+                        
+                            <div class="form-group col-sm-12 ">
+                                <label class="form-label" for="warehouseName">Warehouse Name</label>
+                                <input required type="text" [(ngModel)]="warehouse.name" name="warehouseName" id="warehouseName"
+                                    class="form-control phone" maxlength="28" placeholder="Enter Warehouse Name" />
+                            </div>
+
+                            <div class="form-group col-sm-12">
+                                <label class="form-label" for="warehouseCity">City</label>
+                                <input class="form-control" type="email" [(ngModel)]="warehouse.city" name="warehouseCity" id="warehouseCity" required
+                                    placeholder="Enter City" />
+                            </div>
+
+                            <div class="form-group col-sm-12">
+                                <label class="form-label" for="warehouseState">State</label>
+                                <input class="form-control" type="text" [(ngModel)]="warehouse.state" name="warehouseState" id="warehouseState"
+                                    placeholder="Enter State" required />
+                            </div>
+
+        
+                            <div class="form-group col-sm-12"  >
+                                <label class="form-label" for="image">Product Image</label> 
+                            <a>
+                                <input class="form-control" type="file"  >
+                            </a>
+
+                            </div>
+
+                    </div>
+                    <div class="form-group text-center"> 
+                        <input class="btn eh-button" type="submit" name="submit_reg" value="Add Warehouse" (click)="addWarehouse()">
+                        
+                    </div>
+                   
+                </fieldset>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
+

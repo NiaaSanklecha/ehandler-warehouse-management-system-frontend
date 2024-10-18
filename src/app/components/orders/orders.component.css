@@ -1,0 +1,18 @@
+
+.avatar {
+    position: absolute;
+    left: 10%;
+    top: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+}
+.order-section h4{
+    font-family: Barlow;
+    color: #0e243f;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 16px;
+    margin-left: 5px;
+}

@@ -1,0 +1,7 @@
+{
+    "/api/*": {
+        "target": "https://sanklecha-clothing.myshopify.com/admin/",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

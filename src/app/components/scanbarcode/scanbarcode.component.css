@@ -1,0 +1,25 @@
+.dimension-fields {
+  display: flex;
+  border: 1px solid #b0c0d6;
+}
+.dimension-fields .dimension-input {
+  flex-basis: 33%;
+}
+.dimension-input .form-control{
+  border: 0;
+}
+.dimension-fields .dimension-seperator {
+  padding: 8px 7px;
+  color: rgb(137, 137, 137);
+  background-color: rgba(239, 242, 245, 0.836);
+  font-size: 12px;
+}
+.close-button{
+  position: absolute;
+  right: 100px;
+  top: 50px;
+  display: block;
+}
+.close-button button{
+  border-radius: 25%;
+}

@@ -1,0 +1,432 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+.mat-drawer-inner-container{
+    overflow-x:  hidden !important;
+    overflow-y: auto !important;
+    scrollbar-width: none;
+}
+.error-message {
+    background-color: black;
+    text-align: center;
+    color: red;
+    padding: 8px;
+  }
+  
+  .overlay {
+    position:fixed;
+        top:0;
+        left:0;
+        background:rgba(0, 0, 0, 0.81);
+        z-index:100;
+        width:100%;
+        height:100%;
+        display:flex;
+        opacity: 5;
+  }
+  .scanner-container{
+      display: flex;
+      left: 40%;
+      top: 20%;
+      position: absolute;
+  }
+  
+  .scanner-box {position:relative}
+  .scanner-box:before,.scanner-box:after, .scanner-box>:first-child:before, .scanner-box>:first-child:after {
+    position:absolute;
+    width:80px; height: 80px;
+    border: 10px solid #2ac2c2;
+    content: ' ';
+}
+.scanner-box:before {top:0;left:0;border-width: 1px 0 0 1px}
+.scanner-box:after {top:0;right:0;border-width: 1px 1px 0 0}
+.scanner-box>:first-child:before {bottom:0;right:0;border-width: 0 1px 1px 0}
+.scanner-box>:first-child:after {bottom:0;left:0;border-width: 0 0 1px 1px}
+
+  #interactive.viewport {
+    position: relative;
+    padding: 10px;
+  }
+  
+  #interactive.viewport > canvas,
+  #interactive.viewport > video {
+    max-width: 100%;
+    width: 100%;
+  }
+  .video-container {
+    /* width is set as 100% here. any width can be specified as per requirement */
+    width: 100%;
+    padding-top: 75%;
+    height: 0px;
+    position: relative;
+    border-radius: 20%;
+  }
+  
+  .video {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 20%;
+    top: 0;
+    left: 0;
+  }
+  /* .scanner-container::ng-deep canvas {
+    visibility: hidden;
+    position: relative;
+  }
+  
+  .scanner-container::ng-deep video {
+    width: 400px;
+    height: 200px;
+    justify-content: center;
+    display: flex;
+    margin-left: 40%;
+    margin-top: 10%;
+    
+  } */
+  
+.header-container{ 
+  display: flex;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    margin: 10px;
+    padding: 10px 25px;
+    position: relative;
+}
+.header-container .logout-btn, .logout-btn{
+  position: absolute;
+  min-width: 70px;
+    margin-right: 10px;
+    margin-top: 0px;
+    align-self: center;
+    background-color: #212529;
+    color: #ffffff;
+    font-size: 15px;
+    font-family: Barlow;
+    border-radius: 5px;
+    right: 0;
+}
+.header-container .logout-btn:hover, .logout-btn:hover{
+  background-color: #ffffff;
+  border: 3px solid #212529;
+  color: #212529;
+}
+.header-container h3{
+  font-family: Barlow;
+  font-weight: 500;
+  font-size: 25px;
+  letter-spacing: -1px;
+  margin: 0 !important;
+  display: block;
+}
+.product-section{
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    position: relative;
+    padding: 10px 25px;
+    background-color: #ffffff;
+    margin: 10px;
+    transition: width .15s ease-in-out;
+}
+.product-section h3{
+    font-family: Barlow;
+    font-weight: 500;
+    font-size: 25px;
+    letter-spacing: -1px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #0e243f5a;
+}
+.product-section tr{
+    border-bottom: 1px solid #f2f2f2;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+.product-section th{
+    font-family: Barlow;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: normal;
+    padding: 10px 65px 10px 0px;
+}
+.product-section td{
+    font-family: Barlow;
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: normal;
+    color: #565555;
+    padding: 10px 55px 10px 0px;
+}
+.product-section h3,.modal-header h4{
+    font-family: Barlow;
+    font-weight: 500;
+    font-size: 25px;
+    letter-spacing: -1px;
+  }
+  .product-section h5{
+    font-family: Barlow;
+    font-weight: 400;
+    font-size: 20px;
+    letter-spacing: normal;
+  }
+  .product-section .form-label,.modal-body .form-label{
+    font-family: Barlow;
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: normal;
+    padding-bottom: 0px;
+    margin-bottom: 5px;
+    margin-top: 20px;
+  }
+  .product-section .form-control,.modal-body .form-control{
+    background-color: rgba(239, 242, 245, 0.836);
+     
+  }
+  .product-section .image-upload{
+    background: rgba(239, 242, 245, 0.836);
+    margin-top: 98px;
+    min-height: 240px;
+  }
+  
+  .product-section .eh-button, .eh-button{
+    min-width: 150px;
+    margin-left: 10px;
+    margin-top: 25px;
+    align-self: center;
+    border: 3px solid #0e243f;
+    background-color: #ffffff;
+    color: #0e243f;
+    font-size: 20px;
+    font-family: Barlow;
+    border-radius: 25px;
+  }
+  .modal-footer button{
+    min-width: 80px;
+    margin-left: 10px;
+    margin-top: 5px;
+    align-self: center;
+    border: 3px solid #0e243f;
+    background-color: #0e243f;
+    color: #ffffff;
+    font-size: 20px;
+    font-family: Barlow;
+    border-radius: 5px;
+  }
+  .product-section .eh-button:hover, .eh-button:hover,.modal-footer button{
+    background-color: #0e243f;
+    color: #ffffff;
+  }
+.order-section{
+    border: 1px solid #0e243f;
+    border-radius: 5px;
+    position: relative;
+    padding: 10px 25px;
+    margin: 10px; 
+}
+.order-tag{
+    height: 30px;
+    width: 150px;
+    background: #0e243f;
+    position: relative;
+    left: -39px;
+    top:20px
+}
+.order-tag::before{
+    content: '';
+    position: absolute;
+    left: 1px;
+    top: -12px;
+    width: 0;
+      height: 0;
+      border-bottom: 12px solid #0e243f;
+      border-left: 12px solid transparent;
+    
+}
+.order-section .order-tag p{
+    font-family: Barlow;
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: normal;
+    color: #ffffff;
+    margin-left: 17px;
+    margin-right: 15px;
+    padding-top: 5px;
+}
+.order-section h4{
+    font-family: Barlow;
+    color: #0e243f;
+    font-weight: bold;
+    font-size: 20px;
+
+    
+}
+.order-section .pick-up-button{
+    background: rgba(239, 242, 245, 0.836);
+    color: #0e243f;
+    width: 100%;
+    font-family: Barlow;
+    font-size: 15px;
+    font-weight: 500;
+}
+.order-section .pick-up-button:hover{
+    background: #0e243f;
+    color: #ffffff;
+}
+.invoice h2{
+  color: #000;
+  font-size: 40px;
+  font-weight: 700;
+  font-family: Barlow;
+}
+.invoice hr{
+  background-color: #000;
+  opacity: .25;
+  height: 3px !important;
+}
+.invoice h6{
+  color: #000;
+  font-size: 10px;
+  font-weight: 500;
+  font-family: Barlow;
+}
+.invoice h4{
+  color: #000;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: Barlow;
+}
+.invoice p{
+  color: #000;
+  font-size: 10px;
+  font-weight: 400;
+  font-family: Barlow;
+}
+.invoice table{
+  
+  width: 100%;
+}
+.invoice table tr,.invoice table td{
+  border: 3px solid rgba(0, 0, 0, 0.25);
+}
+
+.invoice table thead{
+  background-color: #000;
+  
+}
+.invoice table thead td{
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: Barlow;
+  padding: 5px;
+  text-align: center;
+}
+.invoice table tr td{
+  color: rgba(0, 0, 0, 0.84);
+  font-size: 12px;
+  font-weight: 500;
+  font-family: Barlow;
+  padding: 5px;
+  text-align: center;
+}
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #212529;
+  border-right: none;
+  padding: 5px;
+  height: 30px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #000000;
+}
+
+.searchTerm:focus{
+  color: #212529;
+}
+
+.searchButton {
+  width: 40px;
+  height: 30px;
+  border: 1px solid #212529;
+  background: #212529;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 10%;
+  position: relative;
+  margin-left: 94%;
+  margin-top: -10px;
+  transform: translate(-50%, -50%);
+}
+@media(max-width: 720px){
+    .overlay {
+        position:fixed;
+            top:0;
+            left:0;
+            background:rgba(0, 0, 0, 0.812);
+            z-index:100;
+            width:100%;
+            height:100%;
+            display:flex;
+            opacity: 2;
+      }
+      .scanner-container{
+        display: flex;
+        left: 10%;
+        top: 20%;
+        position: absolute;
+    }
+      #interactive.viewport {
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        padding: 10px;
+      }
+      
+      
+      .product-section table{
+        display: block;
+        overflow-x: auto;
+      }
+      .product-section td, .product-section th{
+        padding: 10px 50px 10px 0px;
+      }
+      .header-container h3{
+        display: none;
+      }
+      .product-section .eh-button, .eh-button{
+        min-width: 80px;
+      }
+      .order-tag{
+        height: 30px;
+        width: 80px;
+      }
+}
+@media(min-width: 376px){
+    .col-xs-9{
+        flex: 0 0 auto;
+        width: 75%;
+    }
+}

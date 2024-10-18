@@ -1,0 +1,172 @@
+
+<div class="overlay text-center" [hidden] = "edited">
+    <div class="close-button text-center">
+        <button (click)="closeScanner()"><mat-icon>close</mat-icon></button>
+      </div>
+    <div class="scanner-container" >
+      <div class="row" >
+        <div class="scanner-box col-9 col-sm-9 col-md-9 col-lg-9" style="padding-left: 0; padding-right: 0;">
+          <!-- <div class="error-message" *ngIf="errorMessage">
+            {{ errorMessage }}
+          </div> -->
+          
+          <div id="interactive" class="viewport">
+            <!-- QuaggaJS will populate this element  -->
+        </div>
+        </div>
+      </div>
+      
+    </div>
+</div>
+<div class="container" style="padding-left: 0px; padding-right: 0px;">
+    <div class="product-section " style="padding: 0px; margin: 0px;">
+        <table class="text-center">
+            <tr *ngFor="let order1 of orderObject">
+                <td>
+                    <tr><h3>Order No {{order1.order.order_number}}</h3></tr> 
+                    <tr><h5>Ordered Date : {{order1.order.created_at | date:'longDate'}}</h5></tr>
+                    <input type="text"  [(ngModel)]="order1.order.location_id" id="locationId" >
+                </td>
+                
+            </tr>
+        </table >
+        <!-- <div class="progress-track">
+            <ul id="progressbar">
+                <li class="step0 active " id="step1">Order placed</li>
+                <li class="step0 active text-center" id="step2">In Transit</li>
+                <li class="step0 active text-right" id="step3"><span id="three">Out for Delivery</span></li>
+            </ul>
+        </div> -->
+        
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-12">
+            <div class="order-section ">
+                <div class="order-tag">
+                    <p>Step 1</p>
+                </div>
+                <h4 class="text-center">Scan Tote</h4>
+                <div class="row">
+                    <div class="col-sm-2 col-2"> </div>
+                    <div class="col-sm-10 col-12"> 
+                        <div class="dimension-fields col-lg-12" style="border-radius: 3px;">
+                            <span class="dimension-input" style="flex-basis: 95%;">
+                            <div class="row" >
+                                <div class="col-lg-12 col-12" style="padding-right: 0; ">
+                                <input class="form-control" type="text" required   name="tote" id="tote" [(ngModel)]="tote"
+                                style="border-radius: 0; margin-bottom: 0;" placeholder="Tote Id" [readonly]="noneditableLocationInput" >
+                            
+                                </div>
+                                
+                            </div>
+                            
+                            </span>
+                            
+                            <span class="dimension-input" style="flex-basis: 5%;">
+                            <button class="btn btn-outline-secondary" (click)="openScanner()" style="border-radius: 0;height: 35.9px;">
+                                <mat-icon  >crop-free</mat-icon></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-12">
+            <div class="order-section ">
+                <div class="order-tag">
+                    <p>Step 2</p>
+                </div>
+                <h4 class="text-center">Scan Location</h4>
+                <div class="row">
+                    <div class="col-sm-2 col-2"> </div>
+                    <div class="col-sm-10 col-12"> 
+                        <div class="dimension-fields col-lg-12" style="border-radius: 3px;">
+                            <span class="dimension-input" style="flex-basis: 95%;">
+                            <div class="row" >
+                                <div class="col-lg-10 col-8" style="padding-right: 0; ">
+                                <input class="form-control" type="text" required   name="location" id="location" [(ngModel)]="location"
+                                style="border-radius: 0; margin-bottom: 0;" placeholder="Location Id" [readonly]="noneditableLocationInput" >
+                            
+                                </div>
+                                <div class="col-lg-2 col-4" style=" padding-left: 0;">
+                                <button class="form-control" style="border-radius: 0;height: 35.9px;" (click) = "matchId(location)" >
+                                    <mat-icon  >search</mat-icon>
+                                </button>
+                                </div>
+                            </div>
+                            
+                            </span>
+                            
+                            <span class="dimension-input" style="flex-basis: 5%;">
+                            <button class="btn btn-outline-secondary" (click)="openScanner()" style="border-radius: 0;height: 35.9px;">
+                                <mat-icon  >crop-free</mat-icon></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="order-section ">
+                <div class="order-tag">
+                    <p>Step 3</p>
+                </div>
+                <h4 class="text-center">Scan Product</h4>
+                <div class="row">
+                    <div class="col-sm-2"> </div>
+                    <div class="col-sm-10 col-12"> 
+                        <div class="dimension-fields col-lg-12" style="border-radius: 3px;">
+                            <span class="dimension-input" style="flex-basis: 95%;">
+                              <div class="row" >
+                                <div class="col-lg-10 col-8" style="padding-right: 0; ">
+                                  <input class="form-control" type="text" required name="barcodeno" id="barcodeno"  [(ngModel)] = "product_identificationno"
+                                  style="border-radius: 0; margin-bottom: 0;" placeholder="Product Id" [readonly]="noneditableProductInput" >
+                              
+                                </div>
+                                <div class="col-lg-2 col-4" style=" padding-left: 0;">
+                                  <button class="form-control" style="border-radius: 0; margin-bottom: 0;height: 35.9px;" (click) = "matchId(product_identificationno)" >
+                                    <mat-icon  >search</mat-icon>
+                                  </button>
+                                </div>
+                              </div>
+                              
+                            </span>
+                            
+                            <span class="dimension-input" style="flex-basis: 5%;">
+                              <button class="btn btn-outline-secondary" (click)="openScanner()" style="border-radius: 0;height: 35.9px;">
+                                <mat-icon  >crop-free</mat-icon></button>
+                            </span>
+                          </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="order-section ">
+                <div class="order-tag">
+                    <p>Step 4</p>
+                </div>
+                <h4 class="text-center">Enter Quantity you are picking up</h4>
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-10">
+                        <div class="form-group col-sm-3"> 
+                            <input class="form-control" type="text"  name="quantity"
+                                id="quantity"  [(ngModel)]="quantity"/>
+                                <p>Quantity Limit is {{receivedQuantity}}</p>
+                        </div>
+                        <div></div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="col-lg-12 text-center">
+            <div class="form-group text-center">
+                <button class="btn eh-button" type="submit" (click) = "onSubmit()">Complete Order</button>
+            </div>
+        </div> 
+    </div>
+</div> 
+

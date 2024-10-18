@@ -1,0 +1,201 @@
+<div class="container" style="justify-items: right;">
+  <div class="row">
+      <div class="col-lg-12 col-sm-12">
+          <div class="header-container text-center">
+              <h3>Welcome, {{user}} !</h3>
+              
+              <a class="btn logout-btn" type="submit" name="logout" routerLink="/logout">Logout</a>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="overlay text-center" [hidden] = "edited">
+<div class="close-button text-center">
+  <button (click)="closeScanner()"><mat-icon>close</mat-icon></button>
+</div>
+<div class="scanner-container" >
+  <div class="row" >
+    <div class="scanner-box col-9 col-sm-9 col-md-9 col-lg-9" style="padding-left: 0; padding-right: 0;">
+      <!-- <div class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div> -->
+      
+      <div id="interactive" class="viewport">
+        <!-- QuaggaJS will populate this element -->
+    </div>
+    </div>
+  </div>
+  
+</div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-sm-6">
+      <div class="product-section">
+        <h3 class="mt-3 mb-3">Add To Inventory</h3>
+        
+        <form>
+          
+            <label class="form-label" for="barcodeno">Identification No</label>
+            <div class="dimension-fields col-lg-12" style="border-radius: 3px;">
+              <span class="dimension-input" style="flex-basis: 95%;">
+                <div class="row" >
+                  <div class="col-lg-10 col-10" style="padding-right: 0; ">
+                    <input class="form-control" type="text" required name="barcodeno" id="barcodeno" [(ngModel)] = "product_identificationno"
+                    style="border-radius: 0; margin-bottom: 0;" placeholder="Scanned Id" [readonly]="noneditableProductInput">
+                
+                  </div>
+                  <div class="col-lg-2 col-2" style=" padding-left: 0;">
+                    <button class="form-control" style="border-radius: 0; margin-bottom: 0;height: 35.9px;" (click) = "searchProductDetails()">
+                      <mat-icon  >search</mat-icon>
+                    </button>
+                  </div>
+                </div>
+                
+              </span>
+              
+              <span class="dimension-input" style="flex-basis: 5%;">
+                <button class="btn btn-outline-secondary" (click)="openScanner()" style="border-radius: 0;height: 35.9px;">
+                  <mat-icon  >crop-free</mat-icon></button>
+              </span>
+            </div>
+            <table>
+              <tr *ngFor = "let item of stringObject">
+                 <td>Product Name: {{item.productName}}
+                 </td>
+                 <td>Total Quantity: {{item.quantity}} </td>
+                  <td>
+                   <div class="form-group" hidden>
+                    <label class="form-label" for="quantity">identification_no</label>
+                    <input class="form-control" type="text" [(ngModel)]="item.productIdentificationNo" name="quantity" id="quantity" required
+                        placeholder="Enter Quantity" />
+                        
+                  </div>
+                  </td>
+              </tr>
+              
+            </table>
+        
+        </form>
+        
+        <form>
+              <div class="form-group">
+                <label class="form-label" for="location">Location</label>
+                <div class="dimension-fields col-lg-12" style="border-radius: 3px;">
+                  <span class="dimension-input" style="flex-basis: 95%;">
+                    <div class="row" >
+                      <div class="col-lg-10 col-10" style="padding-right: 0; ">
+                        <input class="form-control" type="text" required [(ngModel)]="location" name="location" id="location"
+                        style="border-radius: 0; margin-bottom: 0;" placeholder="Location Id" [readonly]="noneditableLocationInput">
+                    
+                      </div>
+                      <div class="col-lg-2 col-2" style=" padding-left: 0;">
+                        <button class="form-control" style="border-radius: 0;height: 35.9px;" (click) = "searchLocationDetails()">
+                          <mat-icon  >search</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                    
+                  </span>
+                  
+                  <span class="dimension-input" style="flex-basis: 5%;">
+                    <button class="btn btn-outline-secondary" (click)="searchLocation()" style="border-radius: 0;height: 35.9px;">
+                      <mat-icon  >crop-free</mat-icon></button>
+                  </span>
+                </div>
+                <table>
+                  <tr *ngFor="let location of locationObject">
+                    <td>Location Name : {{location.locationName}}</td>
+                  </tr>
+                </table>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="origin">Origin</label>
+              <input class="form-control" required type="text"  [(ngModel)]="storedObject.origin" name="origin"
+                  id="origin" placeholder="Enter Origin" />
+          </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label class="form-label" for="quantity">Quantity</label>
+                  <input class="form-control" type="text" [(ngModel)]="storedObject.storeQuantity" name="quantity" id="quantity" required
+                      placeholder="Enter Quantity" />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="sku">SKU</label>
+                <input class="form-control" type="text" [(ngModel)]="storedObject.sku" name="sku" id="sku" required
+                    placeholder="Enter SKU" />
+              </div>
+            </div>
+            
+            
+
+              <div class="form-group text-center">
+                <button class="btn eh-button" type="reset" name="reset">Reset</button>
+                  <button class="btn eh-button" type="submit" (click) = "onSubmit()">Store</button>
+              </div>
+          
+      </form>
+      </div>
+    </div>
+    <div class="col-lg-6 col-sm-6">
+      <div class="product-section" style="min-height: 480px;">
+        <h3 class="mt-3 mb-3">Product List</h3>
+        
+        <table class="text-center" >
+          <tr>
+            <th>No.</th>
+            <th>Product Name</th>
+            <th>Pcs</th>
+            <th>Status</th>
+           
+          </tr>
+          <tr *ngFor="let product of productList , let i = index" >
+            <td>{{i+1}}</td>
+            <td>{{product.productName}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.status}}</td>
+          </tr>
+        </table>
+        
+          <div style=" margin-top: 20%; height: 100px;" class="text-center" *ngIf="productList === null">
+            <h5>No records found.</h5>
+          </div>
+    
+      </div>
+    </div>
+  </div>
+  
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 col-sm-12">
+      <div class="product-section">
+        <h3 class="mt-3 mb-3">Storage</h3>
+        <table *ngIf="storageList">
+          <tr>
+            <th>No. </th>
+            <th>Date</th>
+            <th>Product Id</th>
+            <th>Product Name</th>
+            <th>Location</th>
+            <th>Quantity</th>
+            <th>Origin</th>
+            <th>Completed By</th>
+          </tr>
+          <tr *ngFor="let store of storageList, let i = index">
+            <td>{{i+1}}</td>
+            <td>{{store.date}}</td>
+            <td>{{store.productId}}</td>
+            <td>{{store.productName}}</td>
+            <td>{{store.location}}</td>
+            <td>{{store.storeQuantity}}</td>
+            <td>{{store.origin}}</td>
+            <td>{{store.user}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

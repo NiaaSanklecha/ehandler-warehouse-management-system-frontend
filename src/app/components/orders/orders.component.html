@@ -1,0 +1,118 @@
+<div class="container" style="justify-items: right;">
+    <div class="row">
+        <div class="col-lg-12 col-sm-12">
+            <div class="header-container text-center" >
+                <h3 >Welcome, {{userName}} !</h3>
+                
+                <a class="btn logout-btn" type="submit" name="logout" routerLink="/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="product-section" style="padding-top: 0px !important; padding-bottom: 0px;">
+        <h3 class="mt-3 mb-3">Client List</h3>
+        <div class="row">
+            <div *ngFor="let client of clientList" class="col-lg-4">
+                <input type="text" [(ngModel)]="client.id" hidden>
+                <div class="order-section " (click)="showClientDetails(client.id)" style="cursor: pointer;">
+                    
+                    <img class="avatar mat-elevation-z8" src="data:image/png;base64,{{client.image}}" (error)="img.src = defaultImage" #img/>
+                    <h4 style="margin-left: 70px;">{{client.storeName}}</h4>
+                    
+                </div>
+           </div>
+                        
+          
+            
+            <!-- <div class="row" *ngIf="!clientList">
+                <div class="col-lg-3">
+                    <div class="order-section ">
+                        
+                        <img class="avatar mat-elevation-z8" src="https://www.electrorates.com/blogimg/iPhone_12.png" />
+                        <h4 class="text-center" >Iphone 12</h4>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="order-section ">
+                        
+                        <img class="avatar mat-elevation-z8" src="assets/images/levis_product.jpg" />
+                        <h4 class="text-center">Levis</h4>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="order-section ">
+                        
+                        <img class="avatar mat-elevation-z8" src="assets/images/loreal.png" />
+                        <h4 class="text-center">Loreal</h4>
+                        
+                    </div>
+                </div>  
+                <div class="col-lg-3">
+                    <div class="order-section ">
+                        <img class="avatar mat-elevation-z8" src="assets/images/nike.webp" />
+        <h4 class="text-center">Nike</h4>
+                    </div>
+                </div> 
+                <div class="col-lg-3">
+                    <div class="order-section ">
+                        
+                        <img class="avatar mat-elevation-z8" src="assets/images/open-box.png" />
+                        <h4 class="text-center">Product</h4>
+                        
+                    </div>
+                </div> 
+            </div> -->
+        
+    </div>
+   
+</div>
+
+<!-- 
+<div class="col-lg-4">
+<div class="order-section ">
+<div class="order-tag">
+    <p>#000002</p>
+</div>
+<img class="avatar mat-elevation-z8" src="assets/images/levis_product.jpg" />
+<h4 class="text-center">Levis Jeans</h4>
+<div class="row">
+    <div class="col-sm-4 col-4">
+        <p>Product Id:</p>
+    </div>
+    <div class="col-sm-8 col-8">
+        <input class="form-control" type="text" [(ngModel)]="product_id" name="product_id" id="product_id" 
+        placeholder="Enter Id" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-4 col-4">
+        <p>Quantity</p>
+    </div>
+    <div class="col-sm-8 col-8">
+        <input class="form-control" type="text" [(ngModel)]="quantity" name="quantity" id="quantity" 
+        placeholder="Enter Id" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4 col-4">
+        <p>Order Placed</p>
+    </div>
+    <div class="col-sm-8 col-8">
+        <p>: 31/03/2022</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <button class="btn pick-up-button" (click)="order_pick()">Pick Up</button>
+    </div>
+</div>
+</div>
+</div>
+ -->

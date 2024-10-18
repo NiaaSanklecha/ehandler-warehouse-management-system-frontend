@@ -1,0 +1,97 @@
+<div class="container-login">
+
+<div class="section">
+  <div class="container">
+    <div class="row full-height justify-content-center">
+      <div class="col-12 text-center align-self-center py-5">
+        <div class="section pb-5 pt-5 pt-sm-2 text-center">
+                
+          <div class="card-3d-wrap mx-auto">
+            <div class="card-3d-wrapper">
+              <div class="card-front">
+                <div class="center-wrap">
+                  <div class="section text-center">
+                    <h4 class="mb-4 pb-3">Log In</h4>
+                    <div class="form-group">
+                      <input type="email" name="logemail" class="form-style" placeholder="Your Email" id="logemail" autocomplete="off" [(ngModel)] = "emailId">
+                      <i class="input-icon uil uil-at"></i>
+                    </div>	
+                    <div class="form-group mt-2">
+                      <input type="password" name="logpass" class="form-style" placeholder="Your Password" id="logpass" autocomplete="off" [(ngModel)] = "password">
+                      <i class="input-icon uil uil-lock-alt"></i>
+                    </div>
+                    <div class="form-group mt-2">
+                      <select class="form-style" aria-label="Default select example" name="warehouse" 
+                      [(ngModel)] = "warehouseId" style="-webkit-appearance: none;
+                      -moz-appearance: none;">
+                              
+                        <option value="" disabled>Warehouse to Work in</option>
+                        <option [value]="warehouse.id" *ngFor="let warehouse of warehouseList" >{{warehouse.name}}</option>
+                      
+                    </select> 
+                    <i class="input-icon uil uil-lock-alt"></i>
+                    </div>
+                    <button  class="btn mt-4" (click)="login()">Log In</button>
+                      </div>
+                    </div>
+                  </div>
+             
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+</div>    
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

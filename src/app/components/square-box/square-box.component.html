@@ -1,0 +1,15 @@
+<div class="square" 
+    [ngStyle]="{'background-color': storageDetails !== null ? '#0e243f' : '#0e243f6a' }"
+    (mouseover)="showDiv=true" (mouseout)="showDiv=false" style="cursor: pointer;">
+    <div *ngIf="showDiv && storageDetails !== null"  class="storage-details">
+        <table>
+            <tr *ngFor="let detail of storageDetails" class="text-center">
+                
+                <td >
+                    <tr>{{detail.productName}}</tr>
+                    <tr>Quantity : {{detail.storeQuantity}}</tr>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
